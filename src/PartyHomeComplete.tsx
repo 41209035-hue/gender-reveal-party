@@ -10,7 +10,7 @@ import type { PartyVote } from "./FirebaseREST"
  */
 const PHOTOS = {
     height167: "/photos/height167.jpg",
-    height173: "/photos/height173.jpg",
+    height173: "/photos/height173.jpeg",
     mousePhoto: "/photos/mouse.jpg",
     partialPhoto: "/photos/partial.jpg",
     engineerPhoto: "/photos/engineer.jpg",
