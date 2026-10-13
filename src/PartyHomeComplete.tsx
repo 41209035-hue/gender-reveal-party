@@ -193,7 +193,12 @@ export default function PartyHomeComplete() {
                 <Clue number="01" title="身高的秘密 📏">
                     <p style={{ fontSize: 18 }}>167 cm，還是 173 cm？光看身高，你猜得出來嗎？</p>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(2,minmax(0,1fr))", gap: 16 }}>
-                        <div><Picture src={PHOTOS.height167} label="167 CM 偶像照片" /><div style={{ textAlign: "center", fontWeight: 900, fontSize: 25, marginTop: 12, color: "#5DABE2" }}>167 CM</div></div>
+                        <div><Picture 
+                                 src={PHOTOS.height167} 
+                                 label="167 CM 偶像照片"
+                                 position="center 0%"
+                                 />
+                            <div style={{ textAlign: "center", fontWeight: 900, fontSize: 25, marginTop: 12, color: "#5DABE2" }}>167 CM</div></div>
                         <div><Picture src={PHOTOS.height173} label="173 CM 偶像照片" /><div style={{ textAlign: "center", fontWeight: 900, fontSize: 25, marginTop: 12, color: "#D879AB" }}>173 CM</div></div>
                     </div>
                 </Clue>
