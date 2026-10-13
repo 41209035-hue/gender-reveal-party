@@ -28,23 +28,71 @@ const CARD: React.CSSProperties = {
     padding: "clamp(22px,4vw,42px)",
 }
 
-function Picture({ src, label, height = 320 }: { src: string; label: string; height?: number }) {
-    const [failed, setFailed] = useState(false)
-    useEffect(() => setFailed(false), [src])
+
+function Picture({
+    src,
+    label,
+    height = 320,
+}: {
+    src: string
+    label: string
+    height?: number
+}) {
     return (
-        <div style={{ height, borderRadius: 22, overflow: "hidden", position: "relative", background: "linear-gradient(145deg,#F6E8F1,#E6F2FF)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            {src && !failed ? (
-                <img src={src} alt={label} onError={() => setFailed(true)} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        <div
+            style={{
+                width: "100%",
+                minHeight: height,
+                borderRadius: 22,
+                overflow: "hidden",
+                position: "relative",
+                background: "linear-gradient(145deg,#F6E8F1,#E6F2FF)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+            }}
+        >
+            {src ? (
+                <img
+                    src={src}
+                    alt={label}
+                    style={{
+                        display: "block",
+                        width: "100%",
+                        height: "auto",
+                        maxHeight: "80vh",
+                        objectFit: "contain",
+                        objectPosition: "center",
+                    }}
+                    onError={(e) => {
+                        e.currentTarget.style.display = "none"
+                        e.currentTarget.parentElement?.setAttribute(
+                            "data-missing-photo",
+                            label
+                        )
+                    }}
+                />
             ) : (
-                <div style={{ textAlign: "center", color: "#927D9A", padding: 24 }}>
-                    <div style={{ fontSize: 42, marginBottom: 12 }}>📷</div>
+                <div
+                    style={{
+                        textAlign: "center",
+                        color: "#927D9A",
+                        padding: 24,
+                    }}
+                >
+                    <div style={{ fontSize: 42, marginBottom: 12 }}>
+                        📷
+                    </div>
                     <div style={{ fontWeight: 700 }}>{label}</div>
-                    <div style={{ fontSize: 12, marginTop: 8 }}>請確認 public/photos 的圖片檔名與副檔名</div>
+                    <div style={{ fontSize: 12, marginTop: 8 }}>
+                        請確認 public/photos 裡的圖片路徑
+                    </div>
                 </div>
             )}
         </div>
     )
 }
+
 
 function Results({ votes, error, caption }: { votes: PartyVote[]; error: string; caption: string }) {
     const boys = votes.filter(v => v.choice === "boy")
